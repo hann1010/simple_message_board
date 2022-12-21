@@ -1,0 +1,62 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+		<h1>Profile</h1>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Update profile for user: {{ user }}.</legend>
+				<p>Joined at: {{ user.date_joined |date:"H:i d, m, Y"}}</p>
+				<p>Session Started at: {{ user.last_login |date:"H:i d, m, Y" }}</p>
+				<div class="row">
+					<div class="col-sm-3">
+						<label>Username:*</label><br>
+						{{ form.username }}
+						{{ form.username.help_text }}
+						{{ form.username.errors }} <br><br>
+						<label>Nickname:</label><br>
+						{{ p_form.nickname }}
+						{{ p_form.nickname.errors }} <br><br>
+						<label>Email:*</label><br>
+						{{ form.email }}
+						{{ form.email.errors }} <br><br>
+						<label>Email public:</label><br>
+						{{ p_form.email_public }}
+						{{ p_form.email_public.errors }} <br><br>
+						<label>First name:</label><br>
+						{{ form.first_name }}<br><br>
+						<label>Last name:</label><br>
+						{{ form.last_name }}<br><br>
+						<label>Address:</label><br>
+						{{ p_form.address }}<br><br>
+						<label>Town:</label><br>
+						{{ p_form.town }}<br><br>
+						<label>Image:</label><br>
+						{{ p_form.image }}<br><br>
+						<legend class="border-bottom mb-4">Settings:</legend>
+						<label>Initial text and HTML tags (chat):</label><br>
+						{{ p_form.initial_chat }}<br><br>
+						<label>List rows(1-100):</label><br>
+						{{ p_form.list_rows }}<br><br>
+						<label>Items in page(1-50):</label><br>
+						{{ p_form.items_in_page }}<br><br>
+						<label>Messages in chat page(1-50):</label><br>
+						{{ p_form.messages_in_chat_page }}<br><br>
+						<label>User level:</label><br>
+						{{ user_level }}<br><br>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">			
+				<button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Save</button>
+				<a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>
+			</div>
+			<br><br>
+			<small class="text-muted ml-2">
+				<a href="{% url 'change_password' %}">Change Password?</a>
+			</small>	
+		</form>
+	</div>	
+</div>
+{% endblock content %}

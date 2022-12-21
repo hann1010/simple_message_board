@@ -1,0 +1,47 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Join Today</legend>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Username:*</label><br>
+                            {{ form.username }}
+                            {{ form.username.help_text }}
+                            {{ form.username.errors }} <br><br>
+                            <label>Email:*</label><br>
+                            {{ form.email }}
+                            {{ form.email.errors }} <br><br>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Password:*</label><br>
+                            {{ form.password1 }}
+                            {{ form.password1.help_text }}
+                            {{ form.password1.errors }} <br><br>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Password confirmation:*</label><br>
+                            {{ form.password2 }}
+                            {{ form.password2.help_text }}
+                            {{ form.password2.errors }} <br><br>
+                            <br>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Sign Up</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Login</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
