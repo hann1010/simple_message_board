@@ -13,7 +13,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return redirect('chat-home')
+            return redirect#('chat-home')
     else:
         form = UserRegisterForm()
 
@@ -35,7 +35,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('chat-home')
+            return redirect#('chat-home')
 
     else:
         user_level_int = request.user.profile.user_level
