@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+      
+    .affix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      display: none;
+    }
+
+    body {
+      background-image: url('{% static "forum/bw-paper-g5eeefba0b_640.jpg" %}');
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-size: 100% 100%;
+    }
+
+    </style>
+
+    {% if title %}
+        <title>Forum - {{ title }}</title>
+    {% else %}
+        <title>Forum</title>
+    {% endif %}
+</head>
+  <body>
+    <script>
+      var w = window.innerWidth;
+      var w_sw = 700; //switch width
+    </script>
+    <header class="site-header">
+      <script>
+        if (w > w_sw) {
+            document.write("<div class='container-fluid' style='height:30px;'>");
+            document.write("</div>");
+        }
+      </script>
+      <nav class="navbar navbar-default" >
+        <div class="container-fluid" >
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'forum-home' %}">Simpleforum</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <script>
+              if (w > w_sw) {
+                  document.write("<li><a href='{% url 'forum-home' %}''>Home</a></li>");
+              }
+            </script>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Latest post <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'forum-latest_all' %}">All</a></li>
+                <li><a href="{% url 'forum-latest_topics' %}">Topics</a></li>
+                <li><a href="{% url 'forum-latest_comments' %}">Comments</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'forum_topic-create' %}">New topic</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <script>
+              if (w > w_sw) {
+                document.write("<li><a>{{user}}</a></li>");
+                document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> Profile</a></li>");
+              }else {
+                document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> {{user}}</a></li>");
+              }
+            </script>
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+
+    <!-- jQuery Affix clone -->
+    <script>
+      if (w > w_sw) {
+        var target = $('.navbar')
+        target.after('<div class="affix" id="affix"></div>')
+        var affix = $('.affix')
+        affix.append(target.clone(true))
+
+        // Show affix on scroll.
+        var element = document.getElementById('affix')
+        if (element !== null) {
+          var position = target.position()
+          window.addEventListener('scroll', function () {
+            var height = $(window).scrollTop()
+            if (height > position.top) {
+              target.css('visibility', 'hidden')
+              affix.css('display', 'block')
+            } else {
+              affix.css('display', 'none')
+              target.css('visibility', 'visible')
+            }
+          })
+        }
+      }
+    </script> 
+  </body>
+</html>

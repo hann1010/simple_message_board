@@ -1,0 +1,96 @@
+{% extends "forum/base.html" %}
+{% block content %}
+<script>
+    if (w > w_sw) {
+        document.write("<div class='container'>");
+    }
+</script>
+    <div class="jumbotron">
+        {% if user.is_authenticated %}
+        <h1>Index</h1>
+        <br>
+        <form action="/" method="GET">
+            {{ filter.title_filter }}
+            <br>
+            <input class="btn btn-success btn-sm" type="submit" value="Submit filter">
+            <br>
+        </form>
+        <br><br>
+        <input class="form-control" id="myInput" type="text" placeholder="List search..">
+        <br>	
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <script>
+                        if (w > w_sw) {
+                            document.write("<th>Post type</th>");
+                            document.write("<th>Date posted</th>");
+                            document.write("<th>Last saved</th>");
+                            document.write("<th>Thread</th>");
+                        } else {
+                            document.write("<th>Date posted</th>");
+                        }
+                    </script>
+                </tr>
+            </thead>
+            {% for post in posts %}
+                <tbody id="myTable">
+                    <tr>
+                        <td><a href="{% url 'forum_open_one_post' post.id %}">{{ post.title }}</a></td>
+                        <td><a href="{% url 'forum_user_info' post.id %}">{{ post.author }}</a></td>
+                        <script>
+                            if (w > w_sw) {
+                                document.write("<td>{{ post.post_type }}</td>");
+                                document.write("<td>{{ post.date_posted|date:'H:i d, m, Y' }}</td>");
+                                document.write("<td>{{ post.date_last_save|date:'H:i d, m, Y' }}</td>");
+                                document.write("<td><a href='{% url 'forum_thread' post.id %}'>Thread</a></td>");
+                            } else {
+                                document.write("<td>{{ post.date_posted|date:'H:i d, m, Y' }}</td>");
+                            }
+                        </script>
+                    </tr>
+                </tbody>	
+            {% endfor %}		
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href="?page=1{{filter_url_str}}">&laquo; first</a>
+                    <a href="?page={{ posts.previous_page_number }}{{filter_url_str}}">previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                </span>
+    
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}{{filter_url_str}}">next</a>   
+                    <a href="?page={{ posts.paginator.num_pages }}{{filter_url_str}}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>	
+        {% else %}
+        <h1>Index Page</h1>
+        <p>Simpleforum</p>
+        {% endif %}
+    </div>
+    <script>
+        if (w > w_sw) {
+            document.write("</div>");
+        }
+    </script>
+
+	<!-- jQuery Filter  -->
+	<script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		  });
+		});
+	</script>
+{% endblock content %}

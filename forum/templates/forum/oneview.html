@@ -1,0 +1,48 @@
+{% extends "forum/base.html" %}
+{% block content %}
+<script>
+    if (w > w_sw) {
+        document.write("<div class='container'>");
+    }
+</script>
+    <div class="well"><h2>Forum - {{ title }}</h2></div>
+        <div class="media">
+            <div class="well">
+                <div class="media-left">
+                    <img src="{{ object.author.profile.image.url }}" class="img-circle special-img" style="width:80px">
+                </div>
+                <div class="media-body">
+                    <a class="mr-2" href="{% url 'forum-home'  %}">{{ object.post_type }}</a>
+                    <small class="text-muted">{{ object.date_posted|date:"H:i d, m, Y" }}</small>
+                    <br>
+                    <a class="mr-2" href="{% url 'forum_user_info' object.id %}">{{ object.author }}</a>
+                <script>
+                    if (w > w_sw) {
+                        
+                    }else {
+                        document.write("</div>");
+                    }
+                </script>
+                <h2><a class="article-title" href="{% url 'forum_comment-create' object.id %}">{{ object.title }}</a></h2>
+                <div class="well">
+                    <p class="article-content">{{ object.content | safe }}</p>
+                </div>
+                <script>
+                    if (w > w_sw) {
+                        document.write("</div>");
+                    }
+                </script>
+                <a class="mr-2" href="{% url 'forum_comment-create' object.id %}">Comment</a>
+                <a class="mr-2" href="{% url 'forum_thread' object.id %}">Open the message thread</a>
+                {% if object.author == user %}
+                <a class="mr-2" href="{% url 'forum_all_update' object.id %}">Update</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+<script>
+    if (w > w_sw) {
+        document.write("</div>");
+    }
+</script>
+{% endblock content %}

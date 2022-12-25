@@ -1,0 +1,69 @@
+{% extends "forum/base.html" %}
+{% block content %}
+<script>
+    if (w > w_sw) {
+        document.write("<div class='container'>");
+    }
+</script>
+    <div class="well"><h2>Forum - {{ title }}</h2></div>
+    {% for post in posts %}
+        <div class="media">
+            <div class="well">
+                <div class="media-left">
+                    <img src="{{ post.author.profile.image.url }}"class="img-circle special-img" style="width:80px">
+                </div>
+                <div class="media-body">
+                    <a class="mr-2" href="{% url 'forum-home'  %}">{{ post.post_type }}</a>
+                    <small class="text-muted">{{ post.date_posted|date:"H:i d, m, Y" }}</small>
+                    <br>
+                    <a class="mr-2" href="{% url 'forum_user_info' post.id %}">{{ post.author }}</a>
+                <script>
+                    if (w > w_sw) {
+                        
+                    }else {
+                        document.write("</div>");
+                    }
+                </script>
+                <h2><a class="article-title" href="{% url 'forum_comment-create' post.id %}">{{ post.title }}</a></h2>
+                <div class="well">
+                    <p class="article-content">{{ post.content | safe }}</p>
+                </div>
+                <script>
+                    if (w > w_sw) {
+                        document.write("</div>");
+                    }
+                </script>
+                <a class="mr-2" href="{% url 'forum_comment-create' post.id %}">Comment</a>
+                <a class="mr-2" href="{% url 'forum_thread' post.id %}">Open the message thread</a>
+                {% if post.author == user %}
+                <a class="mr-2" href="{% url 'forum_all_update' post.id %}">Update</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="well well-sm">
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ posts.previous_page_number }}">previous</a>
+                {% endif %}
+			
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                </span>
+	
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">next</a>   
+                    <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    </div>
+<script>
+    if (w > w_sw) {
+        document.write("</div>");
+    }
+</script>
+{% endblock content %}

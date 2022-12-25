@@ -1,0 +1,27 @@
+{% extends "forum/base.html" %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+		<h1>{{ title }}</h1>
+		<img src="{{ object.author.profile.image.url }}" class="special-img" style="width:300px">
+		<br><br>
+		<ul class="list-group" style="width:300px">
+			<li class="list-group-item list-group-item-info"><b> Username:</b></li>
+			<li class="list-group-item">{{ object.author.username }}</li>
+			<li class="list-group-item list-group-item-info"><b>Fistname:</b></li>
+			<li class="list-group-item">{{ object.author.first_name }}</li>
+			<li class="list-group-item list-group-item-info"><b>Lastname:</b></li>
+			<li class="list-group-item">{{ object.author.last_name}}</li>
+			<li class="list-group-item list-group-item-info"><b>Address:</b></li>
+			<li class="list-group-item">{{ object.author.profile.address}}</li>
+			<li class="list-group-item list-group-item-info"><b>Town:</b></li>
+			<li class="list-group-item">{{ object.author.profile.town}}</li>
+			<li class="list-group-item list-group-item-info"><b>Date joined:</b></li>
+			<li class="list-group-item">{{ object.author.date_joined|date:'H:i d, m, Y' }}</li>
+			<li class="list-group-item list-group-item-info"><b>Date last login:</b></li>
+			<li class="list-group-item">{{ object.author.last_login|date:'H:i d, m, Y'}}</li>
+		</ul>
+		<a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>			                
+	</div>
+</div>
+{% endblock content %}
