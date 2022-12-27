@@ -155,7 +155,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#LOGIN_REDIRECT_URL = 'chat-home'
+LOGIN_REDIRECT_URL = 'forum-home'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #develoment only
