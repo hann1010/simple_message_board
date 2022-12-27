@@ -7,7 +7,7 @@
 </script>
     <div class="jumbotron">
         {% if user.is_authenticated %}
-        <h1>Index</h1>
+        <h1>Forum Index</h1>
         <br>
         <form action="/" method="GET">
             {{ filter.title_filter }}
@@ -73,7 +73,7 @@
         </div>	
         {% else %}
         <h1>Index Page</h1>
-        <p>Simpleforum</p>
+        <p>Simple message board</p>
         {% endif %}
     </div>
     <script>
