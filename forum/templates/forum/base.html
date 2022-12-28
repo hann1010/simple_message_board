@@ -62,14 +62,14 @@
                   document.write("<li><a href='{% url 'forum-home' %}''>Home</a></li>");
               }
             </script>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Latest post <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Forum latest post <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'forum-latest_all' %}">All</a></li>
                 <li><a href="{% url 'forum-latest_topics' %}">Topics</a></li>
                 <li><a href="{% url 'forum-latest_comments' %}">Comments</a></li>
               </ul>
             </li>
-            <li><a href="{% url 'forum_topic-create' %}">New topic</a></li>
+            <li><a href="{% url 'forum_topic-create' %}">Forum new topic</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
