@@ -24,6 +24,25 @@
       display: none;
     }
 
+    .modal {
+      text-align: center;
+    }
+
+    @media screen and (min-width: 768px) { 
+      .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+      }
+    }
+
+    .modal-dialog {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+    }
+
     body {
       background-image: url('{% static "forum/bw-paper-g5eeefba0b_640.jpg" %}');
       background-repeat: no-repeat;
@@ -81,7 +100,8 @@
                 document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> {{user}}</a></li>");
               }
             </script>
-            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a href='javascript:;' data-toggle="modal" data-target="#logOutModal">
+              <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             {% else %}
             <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -90,6 +110,25 @@
         </div>
       </nav>
     </header>
+    <!-- Modal -->
+    <div id="logOutModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Logout?</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to logout?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm mt-1 mb-1">Yes, Logout</a>
+            <button type="button" class="btn btn-primary btn-sm mt-1 mb-1" data-dismiss="modal">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
