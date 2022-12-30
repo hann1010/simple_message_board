@@ -1,0 +1,28 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<script>
+    if (w > w_sw) {
+        document.write("<div class='container'>");
+    }
+</script>
+    <div class="jumbotron">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <h1>{{ title_page }}</h1>
+                <br>
+                {{ form.media }}
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Update</button>
+                <a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>
+            </div>
+        </form>
+    </div>
+<script>
+    if (w > w_sw) {
+        document.write("</div>");
+    }
+</script>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <h1 class="border-bottom mb-4"> {{ title_page }}</h1>
+                    <p>Are you sure you want to delete {{ object.author }} post at: {{ object.date_posted|date:'H:i d, m, Y' }}.</p>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-danger btn-sm mt-1 mb-1" type="submit">Yes, Delete</button>
+                    <a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,185 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<script>
+    if (w > w_sw) {
+        document.write("<div class='container'>");
+    }
+</script>
+<div class="well"><h2>{{ title_page }} - {{ title }}</h2></div>
+	<div class="jumbotron">
+		<script>
+			var chatDispTimer;
+			var thread_Id = 0;
+			function toThread(msg_ID) {
+				thread_Id = msg_ID;
+				jsonChat(1);
+			}
+			setTimeout(jsonChat, 500, 1);
+			function jsonChat(selected_page) {
+			if (selected_page == 1) {
+				if (!chatDispTimer) {
+					chatDispTimer = setInterval(jsonChat, 5000, 1);
+				}
+			} else {
+				clearInterval(chatDispTimer);
+				chatDispTimer = null;
+			}
+			$.ajax({
+				method: 'POST',
+				url: 'chat_json/',
+				dataType: 'json',        
+				data: {
+					csrfmiddlewaretoken : '{{ csrf_token }}',
+					page : selected_page,
+					thread_Id : thread_Id // test
+					},
+				success: function(response) {
+					var instance_chat = response['chat_context'];
+					var instance_profile = response['user_profile'];
+					var instance_users = response['user_s'];
+					$('tbody').empty();
+					if (response['page_number'] < response['num_of_pages']) {
+							$("#pagination tbody").prepend(
+								`
+								<span class="step-links">
+									<a href="next-page" onclick="jsonChat(${response['page_number']||""}+1);
+										return false;" >next</a>
+									<a href="last-page" onclick="jsonChat(${response['num_of_pages']||""});
+										return false;" >last &raquo;</a>
+								</span>
+								`
+							)
+						} 
+					$("#pagination tbody").prepend(
+						`
+							<span class="step-links">
+								<span class="current">
+									Page ${response['page_number']||""} of 
+										${response['num_of_pages']||""}
+								</span>
+							</span>
+						`
+					)
+					 if (response['page_number'] > 1) {
+							$("#pagination tbody").prepend(
+								`
+								<span class="step-links">
+									<a href="first-page" onclick="jsonChat(1);
+										return false;" >&laquo; first</a>
+									<a href="previous-page" onclick="jsonChat(${response['page_number']||""}-1);
+										return false;" >previous</a>
+								</span>
+								`
+							)
+						}
+					for (let i = instance_chat.length-1; i >= 0; i--) {
+						var fields = instance_chat[i];
+						var dateRaw = fields['date_posted']; //Format Date and time
+						var tmp_date = new Date(dateRaw).toJSON().slice(0,10).split('-').reverse().join(',');
+						var tmp_time = new Date(dateRaw).toJSON().slice(11,19);
+						var dateTime =  tmp_time + ' ' + tmp_date;
+						var author_image;
+						var author_name;
+						for (let i = 0; i < instance_profile.length; i++) { // Read nickname
+							var fields_profile = instance_profile[i];
+							if (fields_profile['user_id'] == fields['profile_id']) {
+								author_name = fields_profile['nickname'];
+								author_image = fields_profile['image']
+							}
+						}
+						if (!author_name.replace(/\s/g, '')) { // If no nickname read username
+							for (let i = 0; i < instance_users.length; i++) {
+								var fields_user = instance_users[i];
+								if (fields_user['id'] == fields['author_id']) {
+									author_name = fields_user['username'];
+								}
+							}
+						}
+						let msg_ID = 0; // Get msg ID for thread
+						if (fields['origin_post_id'] == 0) {
+							msg_ID = fields['id'];
+						} else {
+							msg_ID = fields['origin_post_id'];
+						}
+						if (fields['author_id'] == '{{ user.id }}') {
+
+							$("#showdata tbody").prepend(
+									`
+									<div class="col-sm-12" style="background-color:rgb(250, 249, 230);">
+										${fields['post_type']||""}
+										${dateTime||""}
+										<a class="mr-2" href="../${fields['id']||""}/user_info/">
+										${author_name||""}</a>
+										<a class="mr-2" href="../${fields['id']||""}/update/">Update</a>
+										<a class="mr-2" href="../${fields['id']||""}/comment/">Comment</a>
+										<a class="mr-2" href="toThread" onclick="toThread(${msg_ID||""});
+										 return false;">Thread</a>
+									</div>
+									<div class="col-sm-12" style="background-color:rgb(250, 230, 236);">
+										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle 
+											special-img" style="width:40px">
+										${fields['content']||""}
+									</div>
+									<div></div>
+									`
+								)
+							} else {
+								$("#showdata tbody").prepend(
+									`
+									<div class="col-sm-12" style="background-color:rgb(250, 249, 230);">
+										${fields['post_type']||""}
+										${dateTime||""}
+										<a class="mr-2" href="../${fields['id']||""}/user_info/">
+										${author_name||""}</a>
+										<a class="mr-2" href="../${fields['id']||""}/comment/">Comment</a>
+										<a class="mr-2" href="../${fields['id']||""}/comment/">Comment</a>
+										<a class="mr-2" href="toThread" onclick="toThread(${msg_ID||""});
+										 return false;">Thread</a>
+									</div>
+									<div class="col-sm-12" style="background-color:rgb(230, 230, 250);">
+										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle 
+											special-img" style="width:40px">
+										${fields['content']||""}
+									</div>
+									<div></div>
+									`
+								)
+							}
+					
+						}
+  				
+					} 
+
+				})
+			};
+		</script>
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+					{{ form.as_p }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
+				<a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>
+				<a class="btn btn-primary btn-sm mt-1 mb-1" onclick="thread_Id=0; jsonChat(1)">Reload / Unthread</a>
+				<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'chat-new' %}">HTML Editor</a>
+			</div>
+		</form>
+		<br>
+		<table class="table table-bordered" id="showdata">
+			<tbody>
+				
+			</tbody>
+		</table>
+		<table class="pagination" id="pagination">
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+<script>
+	if (w > w_sw) {
+		document.write("</div>");
+	}
+</script>
+{% endblock content %}
