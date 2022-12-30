@@ -10,7 +10,7 @@
 				{{ form.as_p }}
 			</fieldset>
 			<button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Login</button>
-			<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'message-board_home' %}">Return to Index</a>
+			<a class="btn btn-primary btn-sm mt-1 mb-1" href="javascript:history.go(-1)">Back</a>
 			<br><br>
 			<small class="text-muted ml-2">
 				<a href="{% url 'password_reset' %}">Forgot Password?</a>
