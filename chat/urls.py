@@ -11,9 +11,8 @@ from .views import (
 
 
 urlpatterns = [
-    path('', views.home, name='chat-home'),
     path('chat/chat-view/chat_json/', views.jsonChat, name='chat-json'),
-    path('chat/chat-view/', Chat_View.as_view(), name='chat-view'),
+    path('chat/chat-view/', Chat_View.as_view(), name='chat_view'),
     path('chat/chat-new/', ChatCreateView.as_view(), name='chat-new'),
     path('chat/<int:pk>/update/', ChatUpdateView.as_view(), name='chat_update'),
     path('chat/<int:pk>/comment/', ChatCommentCreateView.as_view(), name='chat_comment'),

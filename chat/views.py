@@ -19,14 +19,6 @@ from django.views.generic import (
     )
 
 
-def home(request):
-    dic_x = {
-        'title': 'home',
-        'title_page' : 'Home'
-    }
-    return render(request, 'chat/index.html', dic_x)
-
-
 @login_required
 def jsonChat(request):
     post_id_tmp = request.POST.get('thread_Id')
