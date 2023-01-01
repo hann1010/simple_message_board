@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',  # users
-    'forum.apps.ForumConfig',  #forum
-    'ckeditor'                 #ckeditor
+    'users.apps.UsersConfig', # users
+    'forum.apps.ForumConfig', #forum
+    'ckeditor'                #ckeditor
+    'chat.apps.ChatConfig'    #chat
 ]
 
 MIDDLEWARE = [
