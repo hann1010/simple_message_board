@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig', # users
     'forum.apps.ForumConfig', #forum
-    'ckeditor'                #ckeditor
+    'ckeditor',               #ckeditor
     'chat.apps.ChatConfig'    #chat
 ]
 
