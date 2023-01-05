@@ -70,7 +70,7 @@ def latest_topics(request):
     page_number = request.GET.get('page')
     page_data = paginator.get_page(page_number)
     dic_x = {
-        'title': 'latest topics',
+        'title': 'Forum latest topics',
         'posts': page_data
     }
     return render(request, 'forum/itemview.html', dic_x)
@@ -90,7 +90,7 @@ def latest_comments(request):
     page_number = request.GET.get('page')
     page_data = paginator.get_page(page_number)
     dic_x = {
-        'title': 'latest comments',
+        'title': 'Forum latest comments',
         'posts': page_data
     }
     return render(request, 'forum/itemview.html', dic_x)
@@ -110,7 +110,7 @@ def latest_all(request):
     page_number = request.GET.get('page')
     page_data = paginator.get_page(page_number)
     dic_x = {
-        'title': 'latest all',
+        'title': 'Forum latest all',
         'posts': page_data
     }
     return render(request, 'forum/itemview.html', dic_x)
@@ -122,7 +122,7 @@ class AllDetailView(LoginRequiredMixin, DetailView): #Show one post
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'one post'
+        context["title"] = 'Forum one post'
         return context
 
 
@@ -149,7 +149,7 @@ class ThreadDetailView(LoginRequiredMixin, DetailView): #Show post thread
         page_number = self.request.GET.get('page')
         page_data = paginator.get_page(page_number)
         context["posts"] = page_data
-        context["title"] = 'message thread'
+        context["title"] = 'Forum message thread'
         return context
 
 
@@ -159,7 +159,7 @@ class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user inform
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'User info'
+        context["title"] = 'Forum User info'
         return context
 
 
@@ -170,7 +170,7 @@ class TopicCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'new topic'
+        context["title"] = 'Forum new topic'
         return context
 
     def get_template_names(self):
@@ -195,7 +195,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["topic_context"] = Forum_post.objects.all().values().get(pk=self.kwargs.get('pk'))
-        context["title"] = 'new comment' 
+        context["title"] = 'Forum new comment' 
         return context
 
     def get_template_names(self):
@@ -226,7 +226,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'edit post'
+        context["title"] = 'Forum edit post'
         return context
 
     def get_template_names(self):
@@ -256,7 +256,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'delete post'
+        context["title"] = 'Forum delete post'
         return context
 
     def test_func(self):
