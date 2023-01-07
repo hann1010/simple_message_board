@@ -79,7 +79,7 @@ class Chat_View(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'view'
+        context['title'] = 'Chat view'
         context['title_page'] = 'Chat'
         return context
 
@@ -115,7 +115,7 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'new'
+        context['title'] = 'Chat new'
         context['title_page'] = 'New chat'
         return context
 
@@ -144,8 +144,8 @@ class ChatCommentCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["topic_context"] = Chat_post.objects.all().values().get(pk=self.kwargs.get('pk'))
-        context["title"] = 'comment'
-        context['title_page'] = 'New comment' 
+        context["title"] = 'Chat comment'
+        context['title_page'] = 'New comment chat' 
         return context
 
     def get_template_names(self):
@@ -175,7 +175,7 @@ class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user inform
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'user info'
+        context['title'] = 'Chat user info'
         context['title_page'] = 'User info'
         return context
 
@@ -188,7 +188,7 @@ class ChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'edit'
+        context['title'] = 'Chat edit'
         context['title_page'] = 'Edit chat'
         return context
 
@@ -224,7 +224,7 @@ class ChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'delete chat'
+        context['title'] = 'Chat delete'
         context['title_page'] = 'Delete chat'
         return context
 
