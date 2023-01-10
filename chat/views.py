@@ -67,7 +67,7 @@ def jsonChat(request):
 class Chat_View(LoginRequiredMixin, CreateView):
     model = Chat_post
     form_class = Chat_view_Form
-    success_url = reverse_lazy('chat-view')
+    success_url = reverse_lazy('chat_view')
     #fields = ['content']
 
     def get_initial(self):
