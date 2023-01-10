@@ -103,7 +103,7 @@ class Chat_View(LoginRequiredMixin, CreateView):
 class ChatCreateView(LoginRequiredMixin, CreateView):
     model = Chat_post
     form_class = Chat_view_Form
-    success_url = reverse_lazy('chat-view')
+    success_url = reverse_lazy('chat_view')
     #fields = ['content']
 
     def get_initial(self):
@@ -138,7 +138,7 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
 
 class ChatCommentCreateView(LoginRequiredMixin, CreateView):
     model = Chat_post
-    success_url = reverse_lazy('chat-view')
+    success_url = reverse_lazy('chat_view')
     fields = ['content']
 
     def get_context_data(self, **kwargs):
@@ -182,7 +182,7 @@ class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user inform
 
 class ChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Chat_post
-    success_url = reverse_lazy('chat-view')
+    success_url = reverse_lazy('chat_view')
     #form_class = Chat_view_Form
     fields = ['content']
 
@@ -220,7 +220,7 @@ class ChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Chat_post
-    success_url = reverse_lazy('chat-view')
+    success_url = reverse_lazy('chat_view')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
