@@ -31,7 +31,7 @@
 				data: {
 					csrfmiddlewaretoken : '{{ csrf_token }}',
 					page : selected_page,
-					thread_Id : thread_Id // test
+					thread_Id : thread_Id
 					},
 				success: function(response) {
 					var instance_chat = response['chat_context'];
