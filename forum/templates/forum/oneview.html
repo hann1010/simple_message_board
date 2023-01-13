@@ -15,7 +15,12 @@
                     <a class="mr-2" href="{% url 'message-board_home'  %}">{{ object.post_type }}</a>
                     <small class="text-muted">{{ object.date_posted|date:"H:i d, m, Y" }}</small>
                     <br>
-                    <a class="mr-2" href="{% url 'forum_user_info' object.id %}">{{ object.author }}</a>
+                    <a class="mr-2" href="{% url 'forum_user_info' object.id %}">
+                        {% if object.author.profile.nickname %}
+                        {{ object.author.profile.nickname }}
+                        {% else %}
+                        {{ object.author }}
+                    </a>
                 <script>
                     if (w > w_sw) {
                         
