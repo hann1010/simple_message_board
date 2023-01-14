@@ -40,10 +40,10 @@
                     <tr>
                         <td><a href="{% url 'forum_open_one_post' post.id %}">{{ post.title }}</a></td>
                         <td><a href="{% url 'forum_user_info' post.id %}">
-                            {% if object.author.profile.nickname %}
-                            {{ object.author.profile.nickname }}
+                            {% if post.author.profile.nickname %}
+                            {{ post.author.profile.nickname }}
                             {% else %}
-                            {{ object.author }}
+                            {{ post.author }}
                             {% endif %}
                             </a></td>
                         <script>
