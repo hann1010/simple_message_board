@@ -5,7 +5,7 @@
         document.write("<div class='container'>");
     }
 </script>
-    <div class="well"><h2>Forum - {{ title }}</h2></div>
+    <div class="well"><h2>Message board - {{ title }}</h2></div>
     {% for post in posts %}
         <div class="media">
             <div class="well">
@@ -16,7 +16,13 @@
                     <a class="mr-2" href="{% url 'message-board_home'  %}">{{ post.post_type }}</a>
                     <small class="text-muted">{{ post.date_posted|date:"H:i d, m, Y" }}</small>
                     <br>
-                    <a class="mr-2" href="{% url 'forum_user_info' post.id %}">{{ post.author }}</a>
+                    <a class="mr-2" href="{% url 'forum_user_info' post.id %}">
+                        {% if post.author.profile.nickname %}
+                        {{ post.author.profile.nickname }}
+                        {% else %}
+                        {{ post.author }}
+                        {% endif %}
+                    </a>
                 <script>
                     if (w > w_sw) {
                         
