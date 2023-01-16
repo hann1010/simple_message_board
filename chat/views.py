@@ -80,7 +80,7 @@ class Chat_View(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Chat view'
-        context['title_page'] = 'Chat'
+        context['title_page'] = 'Simple message board'
         return context
 
     def get_template_names(self):
