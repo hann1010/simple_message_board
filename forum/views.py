@@ -182,6 +182,8 @@ class TopicCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.author_name = str(self.request.user)
+        form.instance.author_nickname = self.request.user.profile.nickname
         form.instance.post_type = 'Topic'
         messages.add_message(self.request, messages.INFO, 'Yours new topic has been saved!')
         return super().form_valid(form)
@@ -208,6 +210,8 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         db_data = Forum_post.objects.all().values().get(pk=self.kwargs.get('pk'))
         form.instance.author = self.request.user
+        form.instance.author_name = str(self.request.user)
+        form.instance.author_nickname = self.request.user.profile.nickname
         form.instance.post_type = 'Comment'
         form.instance.title = 'Re: ' + db_data['title']
         if db_data['origin_post_id'] == 0:
