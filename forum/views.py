@@ -243,6 +243,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         db_data = Forum_post.objects.all().values().get(pk=self.kwargs.get('pk'))
+        origin_post_id = db_data['origin_post_id']        
         info = 'Post '+ db_data['title']+ ' has been updated!'
         messages.add_message(self.request, messages.INFO, info)
         return super().form_valid(form)
