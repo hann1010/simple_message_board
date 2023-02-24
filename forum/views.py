@@ -18,6 +18,14 @@ from django.views.generic import (
 )
 
 def home(request):
+    dic_x = {
+        'title': 'home',
+        'title_page' : 'Home'
+    }
+    return render(request, 'forum/home.html', dic_x)
+
+
+def index(request):
     dic_x = {}
     filter_url_tmp = ''
     filter_url = ''
