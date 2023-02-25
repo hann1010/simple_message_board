@@ -14,6 +14,7 @@ from .views import (
 
 urlpatterns = [
     path('', views.home, name='message-board_home'),
+    path('forum/index/', views.index, name='forum_index'),
     path('forum/latest/topics/', views.latest_topics, name='forum-latest_topics'),
     path('forum/latest/comments/', views.latest_comments, name='forum-latest_comments'),
     path('forum/latest/all/', views.latest_all, name='forum-latest_all'),
