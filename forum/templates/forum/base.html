@@ -80,11 +80,7 @@
             <a class="navbar-brand" href="{% url 'message-board_home' %}">Simple message board</a>
           </div>
           <ul class="nav navbar-nav">
-            <script>
-              if (w > w_sw) {
-                  document.write("<li><a href='{% url 'message-board_home' %}''>Home</a></li>");
-              }
-            </script>
+            <li><a href="{% url 'forum_index' %}">Forum index</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Forum latest post <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'forum-latest_all' %}">All</a></li>
