@@ -1,7 +1,7 @@
 #from _typeshed import Self
 from django import db
 from django.shortcuts import render
-from .models import Forum_post
+from .models import Forum_post, Home_page
 from .forms import FilterForm
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -18,9 +18,21 @@ from django.views.generic import (
 )
 
 def home(request):
+    items_in_page_tmp = request.user.profile.items_in_page
+    if items_in_page_tmp > 0:
+        items_in_page_int = items_in_page_tmp
+    else:
+        items_in_page_int = 1
+    if items_in_page_tmp > 50:
+        items_in_page_int = 50
+    db_data = Home_page.objects.all().order_by('-date_posted')
+    paginator = Paginator(db_data, items_in_page_int)
+    page_number = request.GET.get('page')
+    page_data = paginator.get_page(page_number)
     dic_x = {
         'title': 'home',
-        'title_page' : 'Home'
+        'title_page' : 'Home',
+        'posts': page_data
     }
     return render(request, 'forum/home.html', dic_x)
 
