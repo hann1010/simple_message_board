@@ -9,20 +9,18 @@
     {% for post in posts %}
         <div class="media">
             <div class="well">
-                <div class="media-left">
-                    <img src="{{ post.author.profile.image.url }}"class="img-circle special-img" style="width:80px">
-                </div>
+                
                 <div class="media-body">
-                    <a class="mr-2" href="{% url 'message-board_home'  %}">{{ post.post_type }}</a>
                     <small class="text-muted">{{ post.date_posted|date:"H:i d, m, Y" }}</small>
-                    <br>
-                    <a class="mr-2" href="{% url 'forum_user_info' post.id %}">
-                        {% if post.author.profile.nickname %}
-                        {{ post.author.profile.nickname }}
-                        {% else %}
-                        {{ post.author }}
-                        {% endif %}
-                    </a>
+                    {% if user.is_authenticated %}
+                        <a class="mr-2" href="{% url 'forum_user_info' post.id %}">
+                            {% if post.author.profile.nickname %}
+                            {{ post.author.profile.nickname }}
+                            {% else %}
+                            {{ post.author }}
+                            {% endif %}
+                        </a>
+                    {% endif %}
                 <script>
                     if (w > w_sw) {
                         
@@ -30,7 +28,6 @@
                         document.write("</div>");
                     }
                 </script>
-                <h2><a class="article-title" href="{% url 'forum_comment-create' post.id %}">{{ post.title }}</a></h2>
                 <div class="well">
                     <p class="article-content">{{ post.content | safe }}</p>
                 </div>
@@ -39,11 +36,6 @@
                         document.write("</div>");
                     }
                 </script>
-                <a class="mr-2" href="{% url 'forum_comment-create' post.id %}">Comment</a>
-                <a class="mr-2" href="{% url 'forum_thread' post.id %}">Open the message thread</a>
-                {% if post.author == user %}
-                <a class="mr-2" href="{% url 'forum_all_update' post.id %}">Update</a>
-                {% endif %}
             </div>
         </div>
     {% endfor %}

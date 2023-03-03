@@ -18,7 +18,10 @@ from django.views.generic import (
 )
 
 def home(request):
-    items_in_page_tmp = request.user.profile.items_in_page
+    if request.user.is_authenticated:
+        items_in_page_tmp = request.user.profile.items_in_page
+    else:
+        items_in_page_tmp = 10
     if items_in_page_tmp > 0:
         items_in_page_int = items_in_page_tmp
     else:
