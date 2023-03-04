@@ -17,6 +17,7 @@ from django.views.generic import (
     DeleteView,
 )
 
+
 def home(request):
     if request.user.is_authenticated:
         items_in_page_tmp = request.user.profile.items_in_page
@@ -38,6 +39,7 @@ def home(request):
         'posts': page_data
     }
     return render(request, 'forum/home.html', dic_x)
+
 
 @login_required
 def index(request):
