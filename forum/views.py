@@ -39,7 +39,7 @@ def home(request):
     }
     return render(request, 'forum/home.html', dic_x)
 
-
+@login_required
 def index(request):
     dic_x = {}
     filter_url_tmp = ''
