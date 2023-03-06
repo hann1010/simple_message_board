@@ -189,6 +189,16 @@ class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user inform
         return context
 
 
+class UserHomeDetailView(LoginRequiredMixin, DetailView): #Show selected home user information
+    model = Home_page
+    template_name = 'forum/user_info.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Forum User info'
+        return context
+
+
 class TopicCreateView(LoginRequiredMixin, CreateView):
     model = Forum_post
     success_url = reverse_lazy('forum-latest_topics')
