@@ -8,7 +8,8 @@ from .views import (
     CommentCreateView,
     PostUpdateView,
     PostDeleteView,
-    UserDetailView
+    UserDetailView,
+    UserHomeDetailView
 )
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('forum/all/<int:pk>/update/', PostUpdateView.as_view(), name='forum_all_update'),
     path('forum/all/<int:pk>/delete/', PostDeleteView.as_view(), name='forum_all_delete'),
     path('forum/all/<int:pk>/user_info/', UserDetailView.as_view(), name='forum_user_info'),
+    path('home/<int:pk>/user_info/', UserHomeDetailView.as_view(), name='home_user_info')
     
 	
 ]
