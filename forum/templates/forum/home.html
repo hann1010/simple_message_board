@@ -12,7 +12,7 @@
                 <div class="media-body">
                     <small class="text-muted">{{ post.date_last_save|date:"H:i d, m, Y" }}</small>
                     {% if user.is_authenticated %}
-                        <a class="mr-2" href="{% url 'forum_user_info' post.id %}">
+                        <a class="mr-2" href="{% url 'home_user_info' post.id %}">
                             {% if post.author.profile.nickname %}
                             {{ post.author.profile.nickname }}
                             {% else %}
