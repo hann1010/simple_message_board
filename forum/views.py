@@ -185,7 +185,7 @@ class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user inform
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Forum User info'
+        context["title"] = 'User info'
         return context
 
 
@@ -195,7 +195,7 @@ class UserHomeDetailView(LoginRequiredMixin, DetailView): #Show selected home us
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Forum User info'
+        context["title"] = 'User info'
         return context
 
 
