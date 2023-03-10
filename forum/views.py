@@ -48,15 +48,16 @@ def index(request):
     filter_url_tmp = ''
     filter_url = ''
     filter_url_org = request.get_full_path()
-    filter_url_org1 = '&' + (filter_url_org.replace('/', ''))
+    position = filter_url_org.rfind('?')
+    filter_url_org1 = '&' + filter_url_org[position:]
     if request.user.is_authenticated:
         filter_tmp = request.GET.get('title_filter')
         if filter_tmp != None:
             filter_str = filter_tmp
             filter_url_tmp = (filter_url_org1.replace('?', ''))
-            position = filter_url_tmp.rfind('&')
+            position2 = filter_url_tmp.rfind('&')
             if position > 0:
-                filter_url = filter_url_tmp[position:]
+                filter_url = filter_url_tmp[position2:]
             else:
                 filter_url = filter_url_tmp
         else:
