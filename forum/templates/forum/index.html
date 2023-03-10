@@ -9,14 +9,14 @@
         {% if user.is_authenticated %}
         <h2>Simple message board - Forum Index</h2>
         <br>
-        <form action="/" method="GET">
+        <form action="/forum/index/" method="GET">
             {{ filter.title_filter }}
             <br>
             <input class="btn btn-success btn-sm" type="submit" value="Submit filter">
             <br>
         </form>
         <br><br>
-        <input class="form-control" id="myInput" type="text" placeholder="List search..">
+        <input clasxs="form-control" id="myInput" type="text" placeholder="List search..">
         <br>	
         <table class="table table-striped">
             <thead>
