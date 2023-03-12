@@ -36,7 +36,7 @@ def home(request):
     page_data = paginator.get_page(page_number)
     dic_x = {
         'title': 'home',
-        'title_page' : 'Home',
+        'title_page' : 'Simple message board',
         'posts': page_data
     }
     return render(request, 'forum/home.html', dic_x)
@@ -76,6 +76,7 @@ def index(request):
         page_data = paginator.get_page(page_number)
         dic_x = {
             'title': 'home',
+            'title_page' : 'Simple message board',
             'posts': page_data,
             'filter': filter_obj,
             'filter_url_str' : filter_url
