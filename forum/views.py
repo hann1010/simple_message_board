@@ -99,6 +99,7 @@ def latest_topics(request):
     page_data = paginator.get_page(page_number)
     dic_x = {
         'title': 'Forum latest topics',
+        'title_page' : 'Simple message board',
         'posts': page_data
     }
     return render(request, 'forum/itemview.html', dic_x)
