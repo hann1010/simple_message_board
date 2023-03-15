@@ -120,6 +120,7 @@ def latest_comments(request):
     page_data = paginator.get_page(page_number)
     dic_x = {
         'title': 'Forum latest comments',
+        'title_page' : 'Simple message board',
         'posts': page_data
     }
     return render(request, 'forum/itemview.html', dic_x)
