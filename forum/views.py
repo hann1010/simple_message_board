@@ -154,7 +154,7 @@ class AllDetailView(LoginRequiredMixin, DetailView): #Show one post
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Forum one post'
-        context["title"] = 'Simple message board'
+        context["title_page"] = 'Simple message board'
         return context
 
 
@@ -182,6 +182,7 @@ class ThreadDetailView(LoginRequiredMixin, DetailView): #Show post thread
         page_data = paginator.get_page(page_number)
         context["posts"] = page_data
         context["title"] = 'Forum message thread'
+        context["title_page"] = 'Simple message board'
         return context
 
 
