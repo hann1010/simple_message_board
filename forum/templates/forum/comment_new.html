@@ -6,10 +6,11 @@
     }
 </script>
     <div class="jumbotron">
+        <h2>{{ title_page }} - {{ title }}</h2>
+        <br>
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <h1>Forum new comment</h1>
                 <div class="well">
                     <p>{{ topic_context.title }}</p>
                     <div class="well">
