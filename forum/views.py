@@ -242,7 +242,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["topic_context"] = Forum_post.objects.all().values().get(pk=self.kwargs.get('pk'))
         context["title"] = 'Forum new comment'
-        context["title_page"] = 'Simple message board' 
+        context["title_page"] = 'Simple message board'
         return context
 
     def get_template_names(self):
@@ -276,6 +276,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Forum edit post'
+        context["title_page"] = 'Simple message board'
         return context
 
     def get_template_names(self):
