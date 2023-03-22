@@ -3,10 +3,11 @@
 <div class="container">
     <div class="jumbotron">
         <div class="content-section">
+            <h2>{{ title_page }} - {{ title }}</h2>
+            <br>
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <h1 class="border-bottom mb-4">Forum {{ title }}</h1>
                     <p>Are you sure you want to delete a post: {{ object.title }}.</p>
                 </fieldset>
                 <div class="form-group">
