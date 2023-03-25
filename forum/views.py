@@ -153,8 +153,8 @@ class AllDetailView(LoginRequiredMixin, DetailView): #Show one post
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Forum one post'
-        context["title_page"] = 'Simple message board'
+        context['title'] = 'Forum one post'
+        context['title_page'] = 'Simple message board'
         return context
 
 
