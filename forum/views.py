@@ -180,9 +180,9 @@ class ThreadDetailView(LoginRequiredMixin, DetailView): #Show post thread
         paginator = Paginator(db_data, items_in_page_int)
         page_number = self.request.GET.get('page')
         page_data = paginator.get_page(page_number)
-        context["posts"] = page_data
-        context["title"] = 'Forum message thread'
-        context["title_page"] = 'Simple message board'
+        context['posts'] = page_data
+        context['title'] = 'Forum message thread'
+        context['title_page'] = 'Simple message board'
         return context
 
 
