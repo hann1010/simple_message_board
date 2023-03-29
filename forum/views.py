@@ -202,7 +202,7 @@ class UserHomeDetailView(LoginRequiredMixin, DetailView): #Show selected home us
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'User info'
+        context['title'] = 'User info'
         return context
 
 
