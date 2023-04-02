@@ -311,8 +311,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Forum delete post'
-        context["title_page"] = 'Simple message board'
+        context['title'] = 'Forum delete post'
+        context['title_page'] = 'Simple message board'
         return context
 
     def test_func(self):
