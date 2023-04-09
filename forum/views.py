@@ -75,7 +75,7 @@ def index(request):
         page_number = request.GET.get('page')
         page_data = paginator.get_page(page_number)
         dic_x = {
-            'title': 'home',
+            'title': 'Forum index',
             'title_page': 'Simple message board',
             'posts': page_data,
             'filter': filter_obj,
