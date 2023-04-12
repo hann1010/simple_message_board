@@ -9,7 +9,7 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <h1>{{ title_page }}</h1>
+                <h2>{{ title_page }} - {{ title }}</h2>
                 <br>
                 {{ form.media }}
                 {{ form.as_p }}
