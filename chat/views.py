@@ -191,7 +191,7 @@ class ChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Chat edit'
-        context['title_page'] = 'Edit chat'
+        context['title_page'] = 'Simple message board'
         return context
 
     def get_template_names(self):
