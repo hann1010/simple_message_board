@@ -227,7 +227,7 @@ class ChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Chat delete'
-        context['title_page'] = 'Delete chat'
+        context['title_page'] = 'Simple message board'
         return context
 
     def test_func(self):

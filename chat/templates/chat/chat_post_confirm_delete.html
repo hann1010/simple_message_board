@@ -6,7 +6,8 @@
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <h1 class="border-bottom mb-4"> {{ title_page }}</h1>
+                    <h2>{{ title_page }} - {{ title }}</h2>
+                    <br>
                     <p>Are you sure you want to delete {{ object.author }} post at: {{ object.date_posted|date:'H:i d, m, Y' }}.</p>
                 </fieldset>
                 <div class="form-group">
