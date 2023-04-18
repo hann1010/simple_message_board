@@ -39,17 +39,17 @@
 					var instance_users = response['user_s'];
 					$('tbody').empty();
 					if (response['page_number'] < response['num_of_pages']) {
-							$("#pagination tbody").prepend(
-								`
-								<span class="step-links">
-									<a href="next-page" onclick="jsonChat(${response['page_number']||""}+1);
-										return false;" >next</a>
-									<a href="last-page" onclick="jsonChat(${response['num_of_pages']||""});
-										return false;" >last &raquo;</a>
-								</span>
-								`
-							)
-						} 
+						$("#pagination tbody").prepend(
+							`
+							<span class="step-links">
+								<a href="next-page" onclick="jsonChat(${response['page_number']||""}+1);
+									return false;" >next</a>
+								<a href="last-page" onclick="jsonChat(${response['num_of_pages']||""});
+									return false;" >last &raquo;</a>
+							</span>
+							`
+						)
+					} 
 					$("#pagination tbody").prepend(
 						`
 							<span class="step-links">
@@ -60,18 +60,21 @@
 							</span>
 						`
 					)
-					 if (response['page_number'] > 1) {
-							$("#pagination tbody").prepend(
-								`
-								<span class="step-links">
-									<a href="first-page" onclick="jsonChat(1);
-										return false;" >&laquo; first</a>
-									<a href="previous-page" onclick="jsonChat(${response['page_number']||""}-1);
-										return false;" >previous</a>
-								</span>
-								`
-							)
-						}
+					if (response['page_number'] > 1) {
+						$("#pagination tbody").prepend(
+							`
+							<span class="step-links">
+								<a href="first-page" onclick="jsonChat(1);
+									return false;" >&laquo; first</a>
+								<a href="previous-page" onclick="jsonChat(${response['page_number']||""}-1);
+									return false;" >previous</a>
+							</span>
+							`
+						)
+					}
+					if (thread_Id > 0) {
+						// code
+					}
 					for (let i = instance_chat.length-1; i >= 0; i--) {
 						var fields = instance_chat[i];
 						var dateRaw = fields['date_posted']; //Format Date and time
