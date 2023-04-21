@@ -74,6 +74,11 @@
 					}
 					if (thread_Id > 0) {
 						// code
+						$("#showdata tbody").prepend(
+							`
+							<p>Thread view<p/>
+							`
+						)
 					}
 					for (let i = instance_chat.length-1; i >= 0; i--) {
 						var fields = instance_chat[i];
