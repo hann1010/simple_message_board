@@ -35,7 +35,7 @@ def home(request):
     page_number = request.GET.get('page')
     page_data = paginator.get_page(page_number)
     dic_x = {
-        'title': 'home',
+        'title': 'Home',
         'title_page': 'Simple message board',
         'posts': page_data
     }
