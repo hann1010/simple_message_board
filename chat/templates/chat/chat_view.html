@@ -38,6 +38,7 @@
 					var instance_profile = response['user_profile'];
 					var instance_users = response['user_s'];
 					$('tbody').empty();
+					// Pangination
 					if (response['page_number'] < response['num_of_pages']) {
 						$("#pagination tbody").prepend(
 							`
