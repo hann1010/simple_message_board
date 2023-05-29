@@ -98,7 +98,8 @@
 								author_image = fields_profile['image']
 							}
 						}
-						if (!author_name.replace(/\s/g, '')) { // If no nickname read username
+						// If no nickname read username
+						if (!author_name.replace(/\s/g, '')) {
 							for (let i = 0; i < instance_users.length; i++) {
 								var fields_user = instance_users[i];
 								if (fields_user['id'] == fields['author_id']) {
