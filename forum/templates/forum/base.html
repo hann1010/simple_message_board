@@ -98,7 +98,7 @@
                 document.write("<li><a>{{user}}</a></li>");
                 document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> Profile</a></li>");
               }else {
-                document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> {{user}}</a></li>");
+                document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> {{ user }} - {{ user.profile.nickname }}</a></li>");
               }
             </script>
             <li><a href='javascript:;' data-toggle="modal" data-target="#logOutModal">
