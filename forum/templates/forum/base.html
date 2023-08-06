@@ -97,7 +97,13 @@
             {% if user.is_authenticated %}
             <script>
               if (w > w_sw) {
-                document.write("<li><a>{{user}}</a></li>");
+                document.write("<li><a>\
+                  {% if user.profile.nickname %}\
+                  {{user}} -> {{ user.profile.nickname }}\
+                  {% else %}\
+                  {{user}}\
+                  {% endif %}\
+                  </a></li>");
                 document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> Profile</a></li>");
               }else {
                 document.write("<li><a href='{% url 'profile' %}'><span class='glyphicon glyphicon-user'></span> {{ user }} - {{ user.profile.nickname }}</a></li>");
