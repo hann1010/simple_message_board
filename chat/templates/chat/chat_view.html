@@ -189,9 +189,9 @@
 
 						sound.onended = () => {
 							resolve();
-						};
+							};
 
-					sound.play();
+						sound.play();
 					}catch(error){
 						reject(error);
 					}
