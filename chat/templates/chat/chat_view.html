@@ -177,23 +177,23 @@
 
 			function msgSound(volume){
     			return new Promise((resolve, reject) => {
-        		volume = volume || 100;
+        			volume = volume || 100;
 
-        		try{
-					// You're in charge of providing a valid AudioFile that can be reached by your web app
-					let soundSource = "{{MEDIA_URL}}audio/door-bang-1wav-14449.mp3";
-					let sound = new Audio(soundSource);
+        			try{
+						// You're in charge of providing a valid AudioFile that can be reached by your web app
+						let soundSource = "{{MEDIA_URL}}audio/door-bang-1wav-14449.mp3";
+						let sound = new Audio(soundSource);
 
-					// Set volume
-					sound.volume = volume / 100;
+						// Set volume
+						sound.volume = volume / 100;
 
-					sound.onended = () => {
-						resolve();
+						sound.onended = () => {
+							resolve();
 						};
 
 					sound.play();
 					}catch(error){
-					reject(error);
+						reject(error);
 					}
 				});
 			}
