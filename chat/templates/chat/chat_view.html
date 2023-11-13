@@ -84,10 +84,12 @@
 						)
 					}
 					let last_msg_ID = instance_chat.length;
-					// Beep sound if new msg's
-					if (num_of_msgs != last_msg_ID) {
-						// code
-						num_of_msgs = last_msg_ID;
+					let last_field = instance_chat[0];
+					let id_of_last_msg = last_field['id'];
+					// Play sound if new msg's
+					if (num_of_msgs != id_of_last_msg) {
+
+						num_of_msgs = id_of_last_msg;
 					}
 					// Read msg's
 					for (let i = last_msg_ID-1; i >= 0; i--) {
