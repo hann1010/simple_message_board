@@ -83,7 +83,7 @@
 							`
 						)
 					}
-					let last_msg_ID = instance_chat.length;
+					let last_msg_no = instance_chat.length;
 					let last_field = instance_chat[0];
 					let id_of_last_msg = last_field['id'];
 					// Play sound if new msg's
@@ -92,7 +92,7 @@
 						num_of_msgs = id_of_last_msg;
 					}
 					// Read msg's
-					for (let i = last_msg_ID-1; i >= 0; i--) {
+					for (let i = last_msg_no-1; i >= 0; i--) {
 						var fields = instance_chat[i];
 						// Format Date and time
 						var dateRaw = fields['date_posted'];
