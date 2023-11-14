@@ -180,9 +180,9 @@
 
 			function msgSound(volume){
 				return new Promise((resolve, reject) => {
-        			volume = volume || 100;
+					volume = volume || 100;
 
-        			try{
+					try{
 						// You're in charge of providing a valid AudioFile that can be reached by your web app
 						let soundSource = "{{MEDIA_URL}}audio/door-bang-1wav-14449.mp3";
 						let sound = new Audio(soundSource);
