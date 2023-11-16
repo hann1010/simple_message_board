@@ -21,4 +21,4 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['nickname', 'email_public', 'list_rows','messages_in_chat_page',
-         'items_in_page', 'address', 'town', 'image', 'initial_chat']
+         'items_in_page', 'address', 'town', 'image', 'initial_chat', 'beep_sound']
