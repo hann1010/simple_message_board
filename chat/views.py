@@ -81,6 +81,7 @@ class Chat_View(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Chat'
         context['title_page'] = 'Simple message board'
+        context['beep_sound'] = self.request.user.profile.beep_sound
         return context
 
     def get_template_names(self):
