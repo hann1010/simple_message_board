@@ -91,10 +91,9 @@
 					if (num_of_msgs != id_of_last_msg) {
 						if ('{{ beep_sound }}' == 'True') {
 							document.getElementById("chatView").call=msgSound();
-							num_of_msgs = id_of_last_msg;
 						}
-						num_of_msgs = id_of_last_msg;
 					}
+					num_of_msgs = id_of_last_msg;
 					// Read msg's
 					for (let i = last_msg_no-1; i >= 0; i--) {
 						var fields = instance_chat[i];
