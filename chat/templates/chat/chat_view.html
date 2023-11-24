@@ -16,6 +16,7 @@
 				thread_Id = msg_ID;
 				jsonChat(1);
 			}
+			document.getElementById("chatView").call=jsonChat(1);
 			function jsonChat(selected_page) {
 			if (selected_page == 1) {
 				if (!chatDispTimer) {
@@ -89,7 +90,7 @@
 					// Play sound if new msg's
 					if (num_of_msgs != id_of_last_msg) {
 						if ('{{ beep_sound }}' == 'True') {
-							document.getElementById("chatView").call=msgSound();
+							msgSound();
 						}
 					}
 					num_of_msgs = id_of_last_msg;
