@@ -117,6 +117,7 @@
             </script>
             <li><a href='javascript:;' data-toggle="modal" data-target="#logOutModal">
               <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <img src="{{ user.author.profile.image.url }}" class="img-circle special-img" style="width:47px">
             {% else %}
             <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
