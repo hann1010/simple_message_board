@@ -44,6 +44,17 @@
       vertical-align: middle;
     }
 
+    .person {
+            border: 10px solid transparent;
+            margin-bottom: 0px;
+            width: 80%;
+            height: 80%;
+            opacity: 0.7;
+        }
+        .person:hover {
+            border-color: #f1f1f1;
+        }
+
     body {
       background-image: url('{% static "forum/bw-paper-g5eeefba0b_640.jpg" %}');
       background-repeat: no-repeat;
@@ -117,7 +128,7 @@
             </script>
             <li><a href='javascript:;' data-toggle="modal" data-target="#logOutModal">
               <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-              <img src="{{ user.profile.image.url }}" class="img-circle special-img" style="width:47px">
+              <img src="{{ user.profile.image.url }}" class="img-circle special-img person" style="width:50px">
             {% else %}
             <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
