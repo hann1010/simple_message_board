@@ -144,6 +144,17 @@ CKEDITOR_CONFIGS = {
                 ['Styles', 'Format', 'Font', 'FontSize'],
                 ['Smiley', 'SpecialChar'],
             ]
+        },
+        'chat_config_simple': {
+            'toolbar': 'Custom',
+            'width': '100%',
+            'height': '150px',
+            'toolbar_Custom': [
+                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+                ['Bold', 'Italic', 'Underline', 'TextColor', 'BGColor'],
+                ['RemoveFormat', 'Source'],
+                ['Styles', 'Format', 'Font', 'FontSize'],
+            ]
         }
     }
 
