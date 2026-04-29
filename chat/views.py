@@ -2,7 +2,7 @@ from concurrent.futures import thread
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Chat_post, Profile
-from .forms import Chat_view_Form
+from .forms import Chat_view_Form, Chat_view_Form_simple
 from django.db.models import Q
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -66,7 +66,7 @@ def jsonChat(request):
 
 class Chat_View(LoginRequiredMixin, CreateView):
     model = Chat_post
-    form_class = Chat_view_Form
+    form_class = Chat_view_Form_simple
     success_url = reverse_lazy('chat_view')
     #fields = ['content']
 
@@ -75,7 +75,7 @@ class Chat_View(LoginRequiredMixin, CreateView):
         self.initial = {
             'content': self.request.user.profile.initial_chat
             }
-        return self.initial 
+        return self.initial
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -112,7 +112,7 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
         self.initial = {
             'content': self.request.user.profile.initial_chat
             }
-        return self.initial 
+        return self.initial
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -146,7 +146,7 @@ class ChatCommentCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["topic_context"] = Chat_post.objects.all().values().get(pk=self.kwargs.get('pk'))
         context["title"] = 'Chat new comment'
-        context['title_page'] = 'Simple message board' 
+        context['title_page'] = 'Simple message board'
         return context
 
     def get_template_names(self):
@@ -235,4 +235,4 @@ class ChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         Chat_post = self.get_object()
         if self.request.user == Chat_post.author and self.request.user.profile.user_level > 4:
             return True
-        return False 
+        return False
