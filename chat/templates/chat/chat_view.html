@@ -7,8 +7,8 @@
     }
 </script>
 	<div class="jumbotron">
-		<h2>{{ title_page }} - {{ title }}</h2>
-		<br>
+	    <h2>{{ title_page }} - {{ title }}</h2>
+	    <br>
 		<script>
 			var num_of_msgs = 0;
 			var chatDispTimer;
@@ -30,7 +30,7 @@
 			$.ajax({
 				method: 'POST',
 				url: 'chat_json/',
-				dataType: 'json',        
+				dataType: 'json',
 				data: {
 					csrfmiddlewaretoken : '{{ csrf_token }}',
 					page : selected_page,
@@ -53,12 +53,12 @@
 							</span>
 							`
 						)
-					} 
+					}
 					$("#pagination tbody").prepend(
 						`
 							<span class="step-links">
 								<span class="current">
-									Page ${response['page_number']||""} of 
+									Page ${response['page_number']||""} of
 										${response['num_of_pages']||""}
 								</span>
 							</span>
@@ -91,7 +91,7 @@
 					// Play sound if new msg's
 					if (num_of_msgs != id_of_last_msg) {
 						if ('{{ beep_sound }}' == 'True') {
-							msgSound();
+						   msgSound();
 						}
 					}
 					num_of_msgs = id_of_last_msg;
@@ -145,7 +145,7 @@
 										 return false;">Thread</a>
 									</div>
 									<div class="col-sm-12" style="background-color:rgb(250, 230, 236);">
-										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle 
+										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle
 											special-img" style="width:40px">
 										${fields['content']||""}
 									</div>
@@ -165,7 +165,7 @@
 										 return false;">Thread</a>
 									</div>
 									<div class="col-sm-12" style="background-color:rgb(230, 230, 250);">
-										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle 
+										<img src="../..{{MEDIA_URL}}${author_image||""}" class="img-circle
 											special-img" style="width:40px">
 										${fields['content']||""}
 									</div>
@@ -173,10 +173,10 @@
 									`
 								)
 							}
-					
+
 						}
-  				
-					} 
+
+					}
 
 				})
 			};
@@ -207,6 +207,7 @@
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
+			        {{ form.media }}
 					{{ form.as_p }}
 			</fieldset>
 			<div class="form-group">
@@ -223,17 +224,17 @@
 		<br>
 		<table class="table table-bordered" id="showtitle">
 			<tbody>
-				
+
 			</tbody>
 		</table>
 		<table class="table table-bordered" id="showdata">
 			<tbody>
-				
+
 			</tbody>
 		</table>
 		<table class="pagination" id="pagination">
 			<tbody>
-				
+
 			</tbody>
 		</table>
 	</div>
