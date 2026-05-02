@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from PIL import Image
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -21,7 +22,10 @@ class Profile(models.Model):
     user_level= models.PositiveIntegerField(default=10)
     list_rows= models.PositiveIntegerField(default=10)
     items_in_page= models.PositiveIntegerField(default=10)
-    messages_in_chat_page= models.PositiveIntegerField(default=10)
+    messages_in_chat_page= models.PositiveIntegerField(default=10, validators=[
+            MaxValueValidator(50),
+            MinValueValidator(1)
+        ])
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
