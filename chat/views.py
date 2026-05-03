@@ -30,13 +30,7 @@ def jsonChat(request):
         data = Chat_post.objects.all().values().order_by('-date_posted')
     else:
         data = Chat_post.objects.values().filter(Q(id = post_id) | Q(origin_post_id = post_id)).order_by('-date_posted')
-    messages_in_chat_tmp = request.user.profile.messages_in_chat_page
-    if messages_in_chat_tmp > 49:
-        messages_in_chat_int = 50
-    elif messages_in_chat_tmp < 50 and messages_in_chat_tmp > 0:
-        messages_in_chat_int = messages_in_chat_tmp
-    else:
-        messages_in_chat_int = 1
+    messages_in_chat_int = request.user.profile.messages_in_chat_page
     paginator = Paginator(data, messages_in_chat_int)
     page_number = request.POST.get('page')
     if page_number == None:
