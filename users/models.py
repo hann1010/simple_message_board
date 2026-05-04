@@ -18,7 +18,10 @@ class Profile(models.Model):
     country = models.CharField(max_length=200, blank=True)
     initial_chat = models.CharField(max_length=200, default='<p></p>')
     beep_sound = models.BooleanField(default=False)
-    beep_volume = models.PositiveBigIntegerField(default=100)
+    beep_volume = models.PositiveBigIntegerField(default=100, validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ])
     user_level= models.PositiveIntegerField(default=10)
     list_rows= models.PositiveIntegerField(default=10)
     items_in_page= models.PositiveIntegerField(default=10)
