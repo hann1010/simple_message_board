@@ -91,7 +91,7 @@
 					// Play sound if new msg's
 					if (num_of_msgs != id_of_last_msg) {
 						if ('{{ beep_sound }}' == 'True') {
-						   msgSound();
+						   msgSound('{{ beep_volume }}');
 						}
 					}
 					num_of_msgs = id_of_last_msg;
