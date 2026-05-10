@@ -24,7 +24,7 @@ class Profile(models.Model):
         ])
     user_level= models.PositiveIntegerField(default=10)
     list_rows= models.PositiveIntegerField(default=10, validators=[
-            MaxValueValidator(50),
+            MaxValueValidator(100),
             MinValueValidator(1)
         ])
     items_in_page= models.PositiveIntegerField(default=10)

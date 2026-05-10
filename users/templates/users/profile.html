@@ -42,7 +42,8 @@
 						<label>Initial text and HTML tags (chat):</label><br>
 						{{ p_form.initial_chat }}<br><br>
 						<label>Index rows(1-100):</label><br>
-						{{ p_form.list_rows }}<br><br>
+						{{ p_form.list_rows }}
+						{{ p_form.list_rows.errors }}<br><br>
 						<label>Items in page(1-50):</label><br>
 						{{ p_form.items_in_page }}<br><br>
 						<label>Messages in chat page(1-50):</label><br>
