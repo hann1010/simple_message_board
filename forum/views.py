@@ -63,13 +63,7 @@ def index(request):
         else:
             filter_str = ''
         filter_obj = FilterForm(request.GET or None)
-        list_rows_tmp = request.user.profile.list_rows
-        if list_rows_tmp > 0:
-            list_rows_int = list_rows_tmp
-        else:
-            list_rows_int = 1
-        if list_rows_tmp > 100:
-            list_rows_int = 100
+        list_rows_int = request.user.profile.list_rows
         db_data = Forum_post.objects.filter(title__icontains = filter_str).order_by('-date_posted')
         paginator = Paginator(db_data, list_rows_int)
         page_number = request.GET.get('page')
