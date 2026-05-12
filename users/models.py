@@ -27,7 +27,10 @@ class Profile(models.Model):
             MaxValueValidator(100),
             MinValueValidator(1)
         ])
-    items_in_page= models.PositiveIntegerField(default=10)
+    items_in_page= models.PositiveIntegerField(default=10, validators=[
+            MaxValueValidator(50),
+            MinValueValidator(1)
+        ])
     messages_in_chat_page= models.PositiveIntegerField(default=10, validators=[
             MaxValueValidator(50),
             MinValueValidator(1)
