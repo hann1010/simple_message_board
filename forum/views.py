@@ -104,13 +104,7 @@ def latest_comments(request):
 
 @login_required
 def latest_all(request):
-    items_in_page_tmp = request.user.profile.items_in_page
-    if items_in_page_tmp > 0:
-        items_in_page_int = items_in_page_tmp
-    else:
-        items_in_page_int = 1
-    if items_in_page_tmp > 50:
-        items_in_page_int = 50
+    items_in_page_int = request.user.profile.items_in_page
     db_data = Forum_post.objects.all().order_by('-date_posted')
     paginator = Paginator(db_data, items_in_page_int)
     page_number = request.GET.get('page')
