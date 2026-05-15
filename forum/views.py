@@ -133,13 +133,7 @@ class ThreadDetailView(LoginRequiredMixin, DetailView): #Show post thread
     template_name = 'forum/itemview.html'
 
     def get_context_data(self, **kwargs):
-        items_in_page_tmp = self.request.user.profile.items_in_page
-        if items_in_page_tmp > 0:
-            items_in_page_int = items_in_page_tmp
-        else:
-            items_in_page_int = 1
-        if items_in_page_tmp > 50:
-            items_in_page_int = 50
+        items_in_page_int = self.request.user.profile.items_in_page
         context = super().get_context_data(**kwargs)
         db_data = Forum_post.objects.all().values().get(pk=self.kwargs.get('pk'))
         if db_data['origin_post_id'] == 0:
