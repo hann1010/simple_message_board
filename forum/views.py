@@ -150,7 +150,7 @@ class ThreadDetailView(LoginRequiredMixin, DetailView): #Show post thread
         return context
 
 
-class UserDetailView(LoginRequiredMixin, DetailView): #Show selected user information
+class UserDetailView(LoginRequiredMixin, DetailView): #Show selected Forum user information
     model = Forum_post
     template_name = 'forum/user_info.html'
 
