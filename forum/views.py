@@ -172,7 +172,7 @@ class UserHomeDetailView(LoginRequiredMixin, DetailView): #Show selected home us
         return context
 
 
-class TopicCreateView(LoginRequiredMixin, CreateView):
+class TopicCreateView(LoginRequiredMixin, CreateView): #Forum new topic
     model = Forum_post
     success_url = reverse_lazy('forum-latest_topics')
     fields = ['title', 'content']
